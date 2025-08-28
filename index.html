@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peter X. Geng — Home</title>
+  <meta name="description" content="Personal site of Peter X. Geng" />
+  <style>
+    :root{
+      --bg:#0d1117; --fg:#c9d1d9; --muted:#8b949e; --link:#58a6ff;
+      --card:#161b22; --border:#30363d; --accent:#ffd33d;
+    }
+    [data-theme="light"]{
+      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb;
+      --card:#f8fafc; --border:#e5e7eb; --accent:#ca8a04;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,"Helvetica Neue",Arial;
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:24px}
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(180%) blur(6px);
+      background:color-mix(in hsl, var(--bg) 86%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; max-width:980px; margin:0 auto; padding:10px 24px;
+    }
+    .brand{font-weight:800}
+    nav a{color:var(--fg); text-decoration:none; margin-left:14px; padding:6px 8px; border-radius:8px}
+    nav a:hover{background:var(--card)}
+    .btn{
+      margin-left:10px; border:1px solid var(--border); background:transparent;
+      color:var(--fg); padding:6px 10px; border-radius:8px; cursor:pointer;
+    }
+    .btn:hover{background:var(--card)}
+    /* Sections */
+    section{padding:24px; border:1px solid var(--border); border-radius:14px; background:var(--card); margin:20px 0}
+    h1,h2{margin:0 0 10px}
+    p{margin:0 0 10px}
+    ul{margin:8px 0 0 20px}
+    .muted{color:var(--muted)}
+    footer{margin:36px 0 10px; text-align:center; color:var(--muted); font-size:0.95rem}
+    /* Small screens */
+    @media (max-width:720px){
+      nav a{margin-left:10px}
+      .header-inner{padding:10px 16px}
+      .wrap{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">Peter X. Geng</div>
+      <div>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#posts">Posts</a>
+          <a href="#projects">Projects</a>
+        </nav>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- About -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About Me</h2>
+      <p>
+        I am <b>Peter X. Geng</b>, currently a Ph.D. candidate in Biophysics at
+        <b>Peking University</b>. My academic journey began with a B.S. in Biology
+        from <b>East China University of Science and Technology (ECUST)</b>, followed by
+        an M.S. in Data Science at the <b>University of Pittsburgh</b>.
+      </p>
+      <p>My current research focuses on:</p>
+      <ul>
+        <li>Phenotypic analysis of gene knockouts</li>
+        <li>Computational modeling of multi-gene interactions in cancer drug resistance</li>
+      </ul>
+    </section>
+
+    <!-- Posts -->
+    <section id="posts" aria-labelledby="posts-title">
+      <h2 id="posts-title">Posts</h2>
+      <p class="muted">Coming soon.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p class="muted">Coming soon.</p>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Peter X. Geng · Built on GitHub Pages
+    </footer>
+  </main>
+
+  <script>
+    // Theme toggle (persist to localStorage)
+    const key='site-theme', root=document.documentElement, saved=localStorage.getItem(key);
+    if(saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeToggle').onclick=()=>{
+      const next = root.getAttribute('data-theme')==='light' ? '' : 'light';
+      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
+      localStorage.setItem(key, next);
+    };
+    // Year
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
