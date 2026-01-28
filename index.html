@@ -44,13 +44,39 @@
     h1,h2{margin:0 0 10px}
     p{margin:0 0 10px}
     ul{margin:8px 0 0 20px}
+    a{color:var(--link)}
     .muted{color:var(--muted)}
     footer{margin:36px 0 10px; text-align:center; color:var(--muted); font-size:0.95rem}
+
+    /* CV-like rows (Education / Conferences) */
+    .cv-list{margin-top:10px}
+    .cv-row{
+      display:grid;
+      grid-template-columns: 150px 1fr 160px;
+      gap:16px;
+      padding:14px 0;
+      border-top:1px solid var(--border);
+      align-items:start;
+    }
+    .cv-row:first-child{border-top:none; padding-top:0}
+    .cv-left{font-weight:800; letter-spacing:0.2px}
+    .cv-mid{min-width:0}
+    .cv-mid .line1{font-weight:800}
+    .cv-mid .line2{margin-top:4px}
+    .cv-right{text-align:right; white-space:nowrap}
+    .cv-note{margin-top:6px; color:var(--muted)}
+    .cv-italic{font-style:italic}
+
     /* Small screens */
     @media (max-width:720px){
       nav a{margin-left:10px}
       .header-inner{padding:10px 16px}
       .wrap{padding:16px}
+      .cv-row{
+        grid-template-columns: 1fr;
+        gap:6px;
+      }
+      .cv-right{text-align:left}
     }
   </style>
 </head>
@@ -62,6 +88,8 @@
       <div>
         <nav aria-label="Primary">
           <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#conferences">Conferences</a>
           <a href="#posts">Posts</a>
           <a href="#projects">Projects</a>
         </nav>
@@ -83,6 +111,78 @@
         <li>Phenotypic analysis of gene knockouts</li>
         <li>Computational modeling of multi-gene interactions in cancer drug resistance</li>
       </ul>
+    </section>
+
+    <!-- Education -->
+    <section id="education" aria-labelledby="education-title">
+      <h2 id="education-title">Education</h2>
+
+      <div class="cv-list">
+        <div class="cv-row">
+          <div class="cv-left">2022–2027</div>
+          <div class="cv-mid">
+            <div class="line1">Ph.D. in Biophysics, Peking University <span class="muted">(QS #14, 2025)</span></div>
+          </div>
+          <div class="cv-right">GPA: 3.55/4.0</div>
+        </div>
+
+        <div class="cv-row">
+          <div class="cv-left">2026–2027</div>
+          <div class="cv-mid">
+            <div class="line1">M.S. in Artificial Intelligence, University of Colorado Boulder <span class="muted">(QS #320, 2025)</span></div>
+            <div class="line2 cv-italic">Online Program</div>
+          </div>
+          <div class="cv-right">GPA: 3.80/4.0</div>
+        </div>
+
+        <div class="cv-row">
+          <div class="cv-left">2024–2026</div>
+          <div class="cv-mid">
+            <div class="line1">M.S. in Data Science, University of Pittsburgh <span class="muted">(QS #275, 2025)</span></div>
+            <div class="line2 cv-italic">Online Program</div>
+          </div>
+          <div class="cv-right">GPA: 3.85/4.0</div>
+        </div>
+
+        <div class="cv-row">
+          <div class="cv-left">2017–2022</div>
+          <div class="cv-mid">
+            <div class="line1">B.S. in Biological Science</div>
+            <div class="line2"><b>East China Uni. of Sci. and Tech.</b> <span class="muted">(QS #641–650, 2025)</span></div>
+            <div class="cv-note cv-italic">WES evaluation (class-by-class)</div>
+            <div class="cv-note">(+1 year due to major change: Chemical Engineering → Biological Science)</div>
+          </div>
+          <div class="cv-right">
+            <div>GPA: 3.66/4.0</div>
+            <div>GPA: 3.81/4.0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- International Conference Attendance -->
+    <section id="conferences" aria-labelledby="conf-title">
+      <h2 id="conf-title">International Conference Attendance Experience</h2>
+
+      <div class="cv-list">
+        <div class="cv-row">
+          <div class="cv-left">2024 Winter</div>
+          <div class="cv-mid">
+            <div class="line1">PQG24</div>
+            <div class="line2">Harvard University, Boston, USA</div>
+          </div>
+          <div class="cv-right"></div>
+        </div>
+
+        <div class="cv-row">
+          <div class="cv-left">2025 Summer</div>
+          <div class="cv-mid">
+            <div class="line1">RECOMB 2025</div>
+            <div class="line2">Yanshin University, Korea</div>
+          </div>
+          <div class="cv-right"></div>
+        </div>
+      </div>
     </section>
 
     <!-- Posts -->
