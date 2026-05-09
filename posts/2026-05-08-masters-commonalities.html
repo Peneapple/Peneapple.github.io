@@ -6,83 +6,63 @@
   <title>阶段性思考与评论：各自领域的一代宗师的共同点分析</title>
   <meta name="description" content="阶段性思考与评论：各自领域的一代宗师的共同点分析" />
   <style>
-    :root {
-      --bg: #0d1117;
-      --fg: #c9d1d9;
-      --muted: #8b949e;
-      --link: #58a6ff;
-      --card: #161b22;
-      --border: #30363d;
-      --accent: #ffd33d;
+    :root{
+      --bg:#0d1117; --fg:#c9d1d9; --muted:#8b949e; --link:#58a6ff;
+      --card:#161b22; --border:#30363d; --accent:#ffd33d;
+    }
+    [data-theme="light"]{
+      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb;
+      --card:#f8fafc; --border:#e5e7eb; --accent:#ca8a04;
     }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font: 16px/1.75 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font:16px/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+        "Noto Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",Arial,sans-serif;
     }
 
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 40px 24px 64px;
-    }
+    main{max-width:860px; margin:0 auto; padding:40px 24px 64px}
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    a {
-      color: var(--link);
-      text-decoration: none;
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:28px;
     }
-
-    a:hover {
-      text-decoration: underline;
+    .back{margin:0; color:var(--muted)}
+    .btn{
+      margin-left:10px; border:1px solid var(--border); background:transparent;
+      color:var(--fg); padding:6px 10px; border-radius:8px; cursor:pointer;
     }
+    .btn:hover{background:var(--card)}
 
-    .back {
-      margin-bottom: 28px;
-      color: var(--muted);
+    article{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:16px; padding:32px;
     }
-
-    article {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
+    h1{
+      margin:0 0 12px; line-height:1.3;
+      font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-0.02em;
     }
+    .meta{color:var(--muted); margin-bottom:28px; font-size:0.98rem}
+    p{margin:0 0 18px}
+    .placeholder{color:var(--fg)}
+    footer{margin-top:32px; color:var(--muted); font-size:0.95rem}
 
-    h1 {
-      margin: 0 0 12px;
-      line-height: 1.3;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      letter-spacing: -0.02em;
-    }
-
-    .meta {
-      color: var(--muted);
-      margin-bottom: 28px;
-      font-size: 0.98rem;
-    }
-
-    p {
-      margin: 0 0 18px;
-    }
-
-    .placeholder {
-      color: var(--fg);
-    }
-
-    footer {
-      margin-top: 32px;
-      color: var(--muted);
-      font-size: 0.95rem;
+    @media (max-width:720px){
+      main{padding:24px 16px 48px}
+      article{padding:24px}
     }
   </style>
 </head>
 
 <body>
   <main>
-    <p class="back"><a href="../index.html#posts">← Back to Posts</a></p>
+    <div class="topbar">
+      <p class="back"><a href="../index.html#posts">← Back to Posts</a></p>
+      <button id="themeToggle" class="btn" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+    </div>
 
     <article>
       <h1>阶段性思考与评论：各自领域的一代宗师的共同点分析</h1>
@@ -177,5 +157,31 @@
       © 2026 Peter X. Geng · Personal notes
     </footer>
   </main>
+
+  <script>
+    // Theme toggle, consistent with the homepage.
+    (() => {
+      const key = 'site-theme';
+      const root = document.documentElement;
+      const btn  = document.getElementById('themeToggle');
+
+      if (!btn) return;
+
+      const apply = (theme) => {
+        if (theme === 'light') root.setAttribute('data-theme', 'light');
+        else root.removeAttribute('data-theme');
+      };
+
+      const saved = localStorage.getItem(key);
+      apply(saved === 'light' ? 'light' : 'dark');
+
+      btn.addEventListener('click', () => {
+        const isLight = root.getAttribute('data-theme') === 'light';
+        const next = isLight ? 'dark' : 'light';
+        apply(next);
+        localStorage.setItem(key, next);
+      });
+    })();
+  </script>
 </body>
 </html>
